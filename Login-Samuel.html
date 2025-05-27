@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login - Relatório</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            width: 320px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 30px;
+            user-select: none;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 1.8px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        input[type="password"]:focus {
+            border-color: #4CAF50;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #error {
+            margin-top: 15px;
+            color: #e74c3c;
+            font-weight: 600;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Troque o src pela URL ou caminho da sua logo -->
+        <img src="Logo.jpg" alt="Logo Central Nutrition" class="logo" />
+        <h2>Login</h2>
+        <input type="password" id="password" placeholder="Digite a senha" />
+        <button onclick="login()">Entrar</button>
+        <p id="error"></p>
+    </div>
+
+    <script>
+        function login() {
+            const Criptografia  = "Central@2025";
+            const entrada = document.getElementById("password").value;
+            if (entrada === Criptografia) {
+                localStorage.setItem("autenticado", "true");
+                window.location.href = "onboarding-samuel-fernandes-v2.html";
+            } else {
+                document.getElementById("error").textContent = "Senha incorreta.";
+            }
+        }
+    </script>
+</body>
+</html>

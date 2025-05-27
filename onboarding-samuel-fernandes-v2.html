@@ -1,0 +1,1364 @@
+<script>
+    if (localStorage.getItem("autenticado") !== "true") {
+        window.location.href = "login Samuel.html";
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding - Samuel Fernandes | Central Nutrition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    
+    <style>
+    
+    .relatorio {
+    margin: 40px auto;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 1100px;
+}
+
+        /* Reset e estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Definição da paleta de cores da Central Nutrition */
+        :root {
+            --primary-color: #00c2a8; /* Verde institucional */
+            --primary-dark: #00a88e; /* Verde mais escuro para hover */
+            --secondary-color: #555555; /* Cinza escuro para textos */
+            --light-gray: #f5f5f5; /* Cinza claro para fundos */
+            --white: #ffffff; /* Branco para fundos e textos */
+            --accent-color: #0e5c8d; /* Azul para destaques */
+            --success-color: #4caf50; /* Verde para sucesso */
+            --warning-color: #ff9800; /* Laranja para alertas */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra padrão */
+            --transition: all 0.3s ease; /* Transição padrão */
+        }
+
+        /* Definição de fontes */
+        body {
+            font-family: 'Montserrat', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--secondary-color);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 600;
+        }
+
+        /* Padrões de layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+            scroll-margin-top: 80px; /* Para âncoras com header fixo */
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--secondary-color);
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 15px auto 0;
+        }
+
+        /* Header e navegação */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a:hover:after, .nav-menu a.active:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Elementos interativos */
+        .interactive-element {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        /* Seção Hero */
+        #inicio {
+            background-color: var(--light-gray);
+            padding-top: 150px; /* Ajustado para header fixo de ~80px + espaço */
+            padding-bottom: 80px;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 50%;
+            border: 5px solid var(--white);
+            box-shadow: var(--shadow);
+            max-height: 350px;
+            width: auto;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .hero-text {
+            margin-bottom: 30px;
+        }
+
+        /* Seção Perspectiva */
+        #perspectiva {
+            background-color: var(--white);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--primary-color);
+    clip-path: polygon(
+        25% 0%,
+        75% 0%,
+        100% 50%,
+        75% 100%,
+        25% 100%,
+        0% 50%
+    );
+    top: 15px;
+    z-index: 1;
+    transition: var(--transition);
+}
+
+
+        .timeline-left {
+            left: 0;
+        }
+
+        .timeline-right {
+            left: 50%;
+        }
+
+        .timeline-left::after {
+            right: 1px;
+        }
+
+        .timeline-right::after {
+            left: 1px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .timeline-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .timeline-content .btn {
+            margin-top: 15px;
+        }
+
+        .timeline-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
+        }
+        .timeline-details ul {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+        .timeline-details ul li {
+            margin-bottom: 5px;
+        }
+
+
+        /* Seção Ciclo BPM */
+        #ciclo-bpm {
+            background-color: var(--light-gray);
+        }
+
+        .bpm-cycle-container {
+            position: relative;
+            max-width: 700px; /* Ajuste conforme necessário para os hexágonos */
+            margin: 0 auto;
+        }
+
+        .bpm-cycle {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%; /* Mantém a proporção para o posicionamento dos itens */
+        }
+
+       /* Estilo para o CÍRCULO CENTRAL (AGORA SEM HEXÁGONO!) */
+        .cycle-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centraliza o elemento */
+
+            width: 26%; /* Largura do círculo. Ajuste para o tamanho desejado */
+            height: 26%; /* Altura do círculo. Deve ser igual à largura para ser perfeito */
+
+            background-color: var(--white); /* Fundo branco do círculo */
+            border: 0px solid var(--primary-color); /* Borda verde do círculo (2px de espessura) */
+            border-radius: 50%; /* <--- ISSO É O QUE O TORNA UM CÍRCULO! */
+
+            /* MUITO IMPORTANTE: Remover o clip-path se ele estiver aqui! */
+            /* clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */ /* <-- REMOVA OU COMENTE ESSA LINHA */
+
+            display: flex; /* Para centralizar o conteúdo (ícone e texto) */
+            flex-direction: column; /* Para colocar o ícone acima do texto */
+            align-items: center; /* Centraliza horizontalmente o conteúdo */
+            justify-content: center; /* Centraliza verticalmente o conteúdo */
+            text-align: center; /* Garante que o texto esteja centralizado */
+
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1)); /* Sombra suave do círculo */
+            z-index: 2; /* Garante que esteja acima dos outros hexágonos */
+            cursor: pointer;
+            transition: var(--transition); /* Suaviza transições de hover */
+        }
+
+        /* Estilo para o texto dentro do círculo central */
+        .cycle-center h4 {
+            font-size: 1rem; /* Tamanho do texto "Gestão da Mudança" */
+            margin: 0;
+            color: var(--secondary-color); /* Cor do texto */
+            margin-top: 5px; /* Espaço entre o ícone e o texto */
+        }
+
+        /* Estilo para o ícone Font Awesome dentro do círculo central */
+        .cycle-center i.fas {
+            font-size: 3em; /* Tamanho do ícone. Ajuste se quiser maior/menor */
+            color: var(--primary-color); /* Cor do ícone (verde) */
+            transition: var(--transition);
+        }
+
+        /* Efeitos de HOVER para o círculo central */
+        .cycle-center:hover {
+            transform: translate(-50%, -50%) scale(1.05); /* Aumenta um pouco no hover */
+            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.1)); /* Sombra mais forte no hover */
+            background-color: var(--light-gray); /* Fundo do círculo muda um pouco no hover */
+            border-color: var(--primary-dark); /* Borda fica mais escura no hover */
+        }
+
+        /* Efeitos de HOVER para o ÍCONE dentro do círculo central */
+        .cycle-center:hover i.fas {
+            color: var(--primary-dark); /* Ícone fica mais escuro no hover */
+        }
+
+        .cycle-center:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.1));
+            background-color: var(--primary-dark);
+        }
+        
+        .cycle-center h4 {
+            font-size: 1rem; /* Ajuste se necessário */
+            margin: 0;
+            color: var(--secondary-color); /* Cor do texto para contraste */
+        }
+
+      /* Estilos base para todos os itens do ciclo (incluindo o outer-hexagon) */
+        .cycle-item { /* Mantém as propriedades de forma, sombra e transição para a borda */
+            position: absolute;
+            width: 25%; /* Largura do container do hexágono */
+            height: 25%; /* Altura do container do hexágono */
+            background-color: var(--primary-color); /* Cor padrão dos outros hexágonos */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .cycle-item:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.1));
+            background-color: var(--primary-dark); /* Cor de hover padrão */
+        }
+
+        .cycle-item h4 {
+            font-size: 0.9rem;
+            margin: 0;
+            color: var(--white); /* Cor do texto padrão */
+            padding: 5px;
+        }
+
+        /* ----------------------------------------------- */
+
+        .cycle-center i.fas {
+            font-size: 4em; /* Ajuste o tamanho do ícone */
+            color: var(--primary-color); /* Cor das setas */
+            margin-bottom: 5px; /* Espaço entre o ícone e o texto */
+            transition: var(--transition);
+        }
+
+        .cycle-center:hover i.fas {
+            color: var(--primary-dark); /* Cor das setas no hover */
+        }
+
+        /* ----------------------------------------------- */
+
+        /* ----------------------------------------------- */
+        /* Estilo específico para o hexágono de ANÁLISE */
+        /* ----------------------------------------------- */
+
+        /* Outer Hexagon (representa a borda verde) */
+        .cycle-item.outer-hexagon[data-cycle="analise"] {
+            background-color: var(--primary-color); /* Cor da borda */
+            /* Aumenta ligeiramente o tamanho para a borda aparecer ao redor do hexágono interno */
+            width: 25%; /* Ligeiramente maior que os outros cycle-items (25%) */
+            height: 25%; /* Ligeiramente maior que os outros cycle-items (25%) */
+            /* As posições aqui são as mesmas do item original, mas o scale dentro do inner-hexagon irá compensar */
+        }
+
+        .cycle-item.outer-hexagon[data-cycle="analise"]:hover {
+            background-color: var(--primary-dark); /* Borda fica mais escura no hover */
+            transform: scale(1.1); /* Mantém o scale no hover do contêiner externo */
+        }
+
+        /* Inner Hexagon (representa o preenchimento branco) */
+        .inner-hexagon {
+            background-color: var(--white); /* Fundo branco do hexágono interno */
+            width: calc(100% - 10px); /* Subtrai 4px (2px de borda de cada lado) da largura do pai */
+            height: calc(100% - 10px); /* Subtrai 4px da altura do pai */
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); /* Mesma forma */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: var(--transition); /* Transição para o inner-hexagon também */
+        }
+
+        .inner-hexagon h4 {
+            color: var(--secondary-color); /* Texto cinza no hexágono de análise */
+            /* Remove o padding se já estiver OK com o do pai */
+        }
+
+        /* Comportamento no hover do contêiner principal */
+        .cycle-item.outer-hexagon[data-cycle="analise"]:hover .inner-hexagon {
+            background-color: var(--primary-dark); /* Fundo do hexágono interno fica verde escuro no hover */
+        }
+
+        .cycle-item.outer-hexagon[data-cycle="analise"]:hover .inner-hexagon h4 {
+            color: var(--white); /* Texto fica branco no hover */
+        }
+
+        /* ----------------------------------------------- */
+        /* Fim do estilo específico para o hexágono de ANÁLISE */
+        /* ----------------------------------------------- */
+
+        /* Posicionamento dos itens do ciclo (pode precisar de pequenos ajustes com hexágonos) */
+        .cycle-item:nth-child(1) { top: 10%; left: 50%; transform: translateX(-50%); }
+        .cycle-item:nth-child(2) { top: 24%; right: 10%; }
+        .cycle-item:nth-child(3) { bottom: 24%; right: 10%; }
+        .cycle-item:nth-child(4) { bottom: 10%; left: 50%; transform: translateX(-50%); }
+        .cycle-item:nth-child(5) { bottom: 24%; left: 10%; }
+        .cycle-item:nth-child(6) { top: 24%; left: 10%; }
+
+
+        .cycle-details {
+            display: none; /* Inicialmente oculto, controlado por JS */
+            position: absolute; /* Para sobrepor o diagrama */
+            top: 0; /* Controlado por JS para centralizar */
+            left: 0; /* Controlado por JS para centralizar */
+            width: 100%; /* Cobrir o container do ciclo */
+            height: 100%; /* Cobrir o container do ciclo */
+            background-color: rgba(255, 255, 255, 0.98); /* Fundo semi-transparente */
+            border-radius: 8px; /* Mantendo bordas arredondadas para o overlay */
+            padding: 30px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 3; /* Acima dos itens do ciclo */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .cycle-details h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .cycle-details p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+         .cycle-details p strong {
+            color: var(--secondary-color);
+        }
+
+
+        .cycle-details .btn-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            cursor: pointer;
+            padding: 5px;
+        }
+         .cycle-details .btn-close:hover {
+            color: var(--primary-color);
+        }
+
+
+        /* Seção Ações Estratégicas */
+        #acoes-estrategicas {
+            background-color: var(--white);
+        }
+
+        .actions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .action-card {
+            padding: 25px;
+        }
+
+        .action-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .action-card h3 i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        .action-card p {
+            margin-bottom: 15px;
+        }
+
+        .action-card ul {
+            list-style-type: none;
+            margin-top: 15px;
+            padding-left: 0;
+        }
+
+        .action-card ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .action-card ul li:before {
+            content: '✓';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Seção Contato */
+        #contato {
+            background-color: var(--light-gray);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-message {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background-color: var(--white);
+            color: var(--secondary-color);
+            border-radius: 4px;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .contact-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            height: 40px;
+            margin-bottom: 20px
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .footer-text {
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Botão voltar ao topo */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            z-index: 999;
+            font-size: 1.2rem;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .section {
+                padding: 60px 0;
+            }
+
+            .hero-content, .hero-image {
+                flex: 100%;
+                padding-right: 0;
+                text-align: center;
+            }
+
+            .hero-image {
+                margin-top: 40px;
+            }
+
+            .hero-image img {
+                max-width: 250px; /* Reduzido para telas menores */
+                max-height: 250px;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-right { /* Itens da direita passam para baixo da linha central */
+                left: 0;
+            }
+
+            .timeline-left::after, .timeline-right::after {
+                left: 18px; /* Ajusta o círculo para a nova posição da linha */
+            }
+            .cycle-item h4 { font-size: 0.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 50px 0;
+            }
+            
+            .section-title {
+                margin-bottom: 40px;
+                font-size: 1.8rem;
+            }
+             .section-title:after {
+                width: 60px;
+                height: 3px;
+                margin-top: 10px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 80px; /* Altura do header */
+                left: -100%; /* Começa fora da tela */
+                width: 100%;
+                height: calc(100vh - 80px); /* Altura total menos o header */
+                background-color: var(--white);
+                flex-direction: column;
+                text-align: center;
+                transition: left 0.3s ease-in-out;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+                padding: 30px 0;
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0; /* Entra na tela */
+            }
+
+            .nav-menu li {
+                margin: 20px 0; /* Mais espaçamento vertical */
+            }
+             .nav-menu a {
+                font-size: 1.1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                font-size: 28px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .bpm-cycle-container { max-width: 500px; } /* Reduzir tamanho do ciclo */
+            .cycle-item h4 { font-size: 0.7rem; } /* Ainda menor em telas pequenas */
+            .cycle-center h4 { font-size: 0.8rem; }
+            
+            .cycle-details { padding: 20px; }
+            .cycle-details h3 { font-size: 1.3rem; }
+            .cycle-details p { font-size: 0.9rem; max-width: 90%; }
+
+            .actions-container { grid-template-columns: 1fr; } /* Cards em uma coluna */
+        }
+
+        @media (max-width: 576px) {
+             .section { padding: 40px 0; }
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+                width: 100%; /* Botões ocupam largura total em telas muito pequenas */
+                margin-bottom: 10px;
+            }
+            .contact-buttons .btn { width: auto; margin-bottom: 0;} /* Exceto botões de contato */
+
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+             .hero-content .btn { width: auto; }
+
+
+            .bpm-cycle-container { max-width: 320px; } /* Ciclo ainda menor */
+            .cycle-item { width: 30%; height: 30%; } /* Ajuste para caber */
+            .cycle-center { width: 35%; height: 35%; }
+            .cycle-item h4 { font-size: 0.6rem; padding: 3px; }
+            .cycle-center h4 { font-size: 0.7rem; padding: 3px;}
+
+            .section-title { font-size: 1.6rem; }
+            .timeline-content { padding: 15px; }
+            .timeline-content h3 { font-size: 1.1rem; }
+            .timeline-content p { font-size: 0.9rem; }
+
+            .contact-message { font-size: 1rem; }
+
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container header-container">
+            <img src="Logo.jpg" alt="Central Nutrition" class="logo"> <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#perspectiva">Perspectiva</a></li>
+                    <li><a href="#ciclo-bpm">Ciclo BPM</a></li>
+                    <li><a href="#acoes-estrategicas">Ações Estratégicas</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Minha Jornada como Analista de BPM</h1>
+                    <h2 class="hero-subtitle">Samuel Fernandes</h2>
+                    <div class="hero-text">
+                        <p>👋 Olá! Sou Samuel Silvestre, e iniciei recentemente meu desafio como Analista de BPM na Central Nutrition.</p>
+                        <p>Trago comigo uma visão voltada à melhoria contínua, autonomia operacional e otimização estratégica dos processos.</p>
+                        <p>Esta página resume minha jornada esperada, os pilares da minha atuação e os ganhos que viso gerar à empresa.</p>
+                        <p>Vamos juntos?</p>
+                    </div>
+                    <a href="#perspectiva" class="btn">Conheça minha perspectiva</a>
+                </div>
+                <div class="hero-image">
+                    <img src="Samuel Fernandes.png" alt="Samuel Fernandes"> </div>
+            </div>
+        </section>
+
+        <section id="perspectiva" class="section">
+            <div class="container">
+                <h2 class="section-title">Minha Perspectiva</h2>
+                <div class="timeline">
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-content">
+                            <div class="timeline-icon"><i class="fas fa-search"></i></div>
+                            <h3>Fase 1: Diagnóstico das fragilidades atuais</h3>
+                            <p>Identificação dos pontos críticos e oportunidades de melhoria nos processos existentes.</p>
+                            <button class="btn btn-outline timeline-toggle" data-target="details-1">Ver mais</button>
+                            <div class="timeline-details" id="details-1">
+                                <p>Nesta fase inicial, já em andamento, estou realizando:</p>
+                                <ul>
+                                    <li>Visitas aos setores;</li>
+                                    <li>Análise da documentação existente;</li>
+                                    <li>Identificação de gargalos operacionais;</li>
+                                    <li>Mapeamento de dependências entre áreas;</li>
+                                    <li>Avaliação de riscos e pontos de falha.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-right">
+                        <div class="timeline-content">
+                            <div class="timeline-icon"><i class="fas fa-map"></i></div>
+                            <h3>Fase 2: Mapeamento e padronização de processos críticos</h3>
+                            <p>Documentação e padronização dos processos essenciais para o funcionamento da empresa.</p>
+                            <button class="btn btn-outline timeline-toggle" data-target="details-2">Ver mais</button>
+                            <div class="timeline-details" id="details-2">
+                                <p>Nesta fase, irei focar em:</p>
+                                <ul>
+                                    <li>Mapeamento detalhado dos processos;</li>
+                                    <li>Criação de fluxogramas e documentação padronizada;</li>
+                                    <li>Definição de papéis e responsabilidades;</li>
+                                    <li>Estabelecimento de indicadores de desempenho (KPIs);</li>
+                                    <li>Validação dos processos com as áreas envolvidas.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-content">
+                            <div class="timeline-icon"><i class="fas fa-brain"></i></div>
+                            <h3>Fase 3: Redução da dependência de conhecimento externo</h3>
+                            <p>Internalização do conhecimento e criação de base de dados acessível aos devidos colaboradores.</p>
+                            <button class="btn btn-outline timeline-toggle" data-target="details-3">Ver mais</button>
+                            <div class="timeline-details" id="details-3">
+                                <p>Esta fase visa garantir a autonomia da empresa através de:</p>
+                                <ul>
+                                    <li>Criação de base de conhecimento centralizada;</li>
+                                    <li>Documentação de procedimentos operacionais padrão(POP);</li>
+                                    <li>Treinamento e capacitação das equipes;</li>
+                                    <li>Aprimoramento do sistema de gestão documental (Qualisys);</li>
+                                    <li>Desenvolvimento de tutoriais e materiais de referência.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-right">
+                        <div class="timeline-content">
+                            <div class="timeline-icon"><i class="fas fa-chart-line"></i></div>
+                            <h3>Fase 4: Geração de inteligência operacional com dados confiáveis</h3>
+                            <p>Implementação de métricas e análises para tomada de decisão baseada em dados.</p>
+                            <button class="btn btn-outline timeline-toggle" data-target="details-4">Ver mais</button>
+                            <div class="timeline-details" id="details-4">
+                                <p>Nesta fase, trabalharei para:</p>
+                                <ul>
+                                    <li>Definir métricas relevantes para cada processo;</li>
+                                    <li>Implementar ferramentas de coleta e análise de dados;</li>
+                                    <li>Criar dashboards de acompanhamento em tempo real;</li>
+                                    <li>Estabelecer rotinas de análise e melhoria contínua;</li>
+                                    <li>Capacitar gestores na interpretação e uso dos dados.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item timeline-left">
+                        <div class="timeline-content">
+                            <div class="timeline-icon"><i class="fas fa-rocket"></i></div>
+                            <h3>Fase 5: Entrega de autonomia, clareza e agilidade à operação</h3>
+                            <p>Consolidação de uma cultura orientada a processos com foco em resultados.</p>
+                            <button class="btn btn-outline timeline-toggle" data-target="details-5">Ver mais</button>
+                            <div class="timeline-details" id="details-5">
+                                <p>A fase final visa consolidar:</p>
+                                <ul>
+                                    <li>Processos otimizados e automatizados onde possível;</li>
+                                    <li>Equipes autônomas e capacitadas;</li>
+                                    <li>Cultura de melhoria contínua estabelecida;</li>
+                                    <li>Tomada de decisão ágil baseada em dados;</li>
+                                    <li>Governança de processos sustentável.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ciclo-bpm" class="section">
+            <div class="container">
+                <h2 class="section-title">Ciclo BPM</h2>
+                <div class="bpm-cycle-container">
+                    <div class="bpm-cycle">
+                        <div class="cycle-item" data-cycle="planejamento"><h4>Planejamento</h4></div>
+                        <div class="cycle-item outer-hexagon" data-cycle="analise">
+    <div class="inner-hexagon">
+        <h4>Análise</h4>
+    </div>
+</div>
+                        <div class="cycle-item" data-cycle="desenho"><h4>Desenho</h4></div>
+                        <div class="cycle-item" data-cycle="implementacao"><h4>Implementação</h4></div>
+                        <div class="cycle-item" data-cycle="monitoramento"><h4>Monitoramento</h4></div>
+                        <div class="cycle-item" data-cycle="refinamento"><h4>Refinamento</h4></div>
+                        <div class="cycle-center" data-cycle="gestao-mudanca">
+    <i class="fas fa-arrows-rotate"></i> <h4>Gestão da Mudança</h4>
+</div>
+
+                        <div class="cycle-details" id="details-planejamento">
+                            <button class="btn-close" aria-label="Fechar detalhes">&times;</button>
+                            <h3>Planejamento</h3>
+                            <p><strong>O que farei:</strong> Definir estratégia de processos alinhada aos objetivos da Central Nutrition, estabelecer arquitetura de processos e priorizar iniciativas.</p>
+                            <p><strong>Valor para a empresa:</strong> Alinhamento estratégico, foco em processos de maior impacto e uso eficiente de recursos.</p>
+                        </div>
+                        <div class="cycle-details" id="details-analise">
+                            <button class="btn-close" aria-label="Fechar detalhes">&times;</button>
+                            <h3>Análise</h3>
+                            <p><strong>O que farei:</strong> Mapear processos atuais, identificar gargalos, ineficiências e oportunidades de melhoria através de entrevistas e análise de dados.</p>
+                            <p><strong>Valor para a empresa:</strong> Compreensão clara dos processos existentes, identificação de problemas ocultos e base sólida para melhorias.</p>
+                        </div>
+                        <div class="cycle-details" id="details-desenho">
+                            <button class="btn-close" aria-label="Fechar detalhes">&times;</button>
+                            <h3>Desenho</h3>
+                            <p><strong>O que farei:</strong> Redesenhar processos com foco em eficiência.</p>
+                            <p><strong>Valor para a empresa:</strong> Processos otimizados, redução de desperdícios e maior agilidade operacional.</p>
+                        </div>
+                        <div class="cycle-details" id="details-implementacao">
+                            <button class="btn-close" aria-label="Fechar detalhes">&times;</button>
+                            <h3>Implementação</h3>
+                            <p><strong>O que farei:</strong> Coordenar a implementação dos novos processos, treinar equipes, configurar sistemas e gerenciar a transição.</p>
+                            <p><strong>Valor para a empresa:</strong> Transformação efetiva dos processos com mínimo impacto operacional e máxima adoção pelos colaboradores.</p>
+                        </div>
+                        <div class="cycle-details" id="details-monitoramento">
+                            <button class="btn-close" aria-label="Fechar detalhes">&times;</button>
+                            <h3>Monitoramento</h3>
+                            <p><strong>O que farei:</strong> Estabelecer KPIs, criar dashboards de acompanhamento e implementar rotinas de análise de desempenho dos processos.</p>
+                            <p><strong>Valor para a empresa:</strong> Visibilidade em tempo real do desempenho, identificação rápida de desvios e tomada de decisão baseada em dados.</p>
+                        </div>
+                        <div class="cycle-details" id="details-refinamento">
+                            <button class="btn-close" aria-label="Fechar detalhes">&times;</button>
+                            <h3>Refinamento</h3>
+                            <p><strong>O que farei:</strong> Implementar melhorias contínuas com base nos resultados do monitoramento e nas novas necessidades do negócio.</p>
+                            <p><strong>Valor para a empresa:</strong> Evolução constante dos processos, adaptação às mudanças de mercado e manutenção da competitividade.</p>
+                        </div>
+                        <div class="cycle-details" id="details-gestao-mudanca">
+                            <button class="btn-close" aria-label="Fechar detalhes">&times;</button>
+                            <h3>Gestão da Mudança</h3>
+                            <p><strong>O que farei:</strong> Gerenciar o impacto das mudanças nos processos, comunicar efetivamente, engajar colaboradores e garantir a adoção das novas práticas.</p>
+                            <p><strong>Valor para a empresa:</strong> Minimizar resistências, acelerar a aceitação de novos processos e maximizar o retorno sobre os investimentos em melhorias.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <h2 class="section-title">Relatório Interativo - Power BI</h2>
+         
+        <p style="text-align: center; max-width: 800px; margin: 20px auto; font-size: 1.1rem; line-height: 1.6;">
+   Este relatório faz parte do nosso onboarding, fortalecendo a transparência, o alinhamento estratégico e a agilidade na tomada de decisões, desde o primeiro contato com a nossa cultura de gestão por processos.
+</p>
+
+<div class="relatorio">
+    <iframe title="BI" width="1140" height="541.25" 
+    src="https://app.powerbi.com/reportEmbed?reportId=729496fc-465a-4b08-a741-48cf4f9319e6&autoAuth=true&ctid=79be699e-fb01-452e-840e-a47f6172ed88" 
+    frameborder="0" allowFullScreen="true"></iframe>
+</div>
+        </section>
+
+
+
+        <section id="acoes-estrategicas" class="section">
+            <div class="container">
+                <h2 class="section-title">Ações Estratégicas</h2>
+                <div class="actions-container">
+                    <div class="card action-card">
+                        <h3><i class="fas fa-bullseye"></i> Foco na Mudança</h3>
+                        <p>Alinhar processos para melhorar a eficiência operacional</p>
+                        <ul>
+                            <li>Alinhar processos internos</li>
+                            <li>Mapear fluxos</li>
+                            <li>Otimizar a comunicação</li>
+                        </ul>
+                    </div>
+                    <div class="card action-card">
+                        <h3><i class="fas fa-cogs"></i> Eficiência Operacional</h3>
+                        <p>Buscar a otimização de recursos e redução de desperdícios.</p>
+                        <ul>
+                            <li>Automação de tarefas repetitivas</li>
+                            <li>Redução de gargalos</li>
+                            <li>Implementação de KPIs de eficiência</li>
+                        </ul>
+                    </div>
+                    <div class="card action-card">
+                        <h3><i class="fas fa-users"></i> Cultura de Melhoria</h3>
+                        <p>Fomentar uma cultura de melhoria contínua em toda a organização.</p>
+                        <ul>
+                            <li>Capacitação das equipes em BPM</li>
+                            <li>Criação de canais para sugestões</li>
+                            <li>Reconhecimento de iniciativas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="section">
+            <div class="container contact-container">
+                <h2 class="section-title">Contato</h2>
+                <p class="contact-message">Como parte do time da Central, irei atuar para impulsionar a evolução dos nossos processos internos, transformando cada melhoria em uma oportunidade de surpreender e encantar nossos clientes. Estou a disposição para duvidas! A seguir meus dados para contato</p>
+                <div class="contact-buttons">
+                    <a href="mailto:samuel.silvestre@centralnutrition.com.br" class="contact-btn"> <i class="fas fa-envelope"></i> Email:samuel.silvestre@centralnutrition.com.br
+                    </a>
+                    
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container footer-content">
+            <img src="Logo.png.gif" alt="Central Nutrition" class="footer-logo"> <p class="footer-text">&copy; <span id="currentYear"></span> Central Nutrition. Todos os direitos reservados.</p>
+            <div class="footer-links">
+            </div>
+        </div>
+    </footer>
+
+    <a href="#header" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const body = document.body;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+            mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
+            body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : ''; // Prevent body scroll when menu is open
+        });
+
+        // Active nav link on scroll and load
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        const headerHeight = document.getElementById('header') ? document.getElementById('header').offsetHeight : 80;
+
+
+        function setActiveNavLink() {
+            let current = 'inicio'; // Default
+            const scrollPosition = window.pageYOffset + headerHeight + 10; // Offset for better accuracy with fixed header
+
+            sections.forEach(section => {
+                if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+             // Check if scrolled to the very bottom
+            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2) {
+                 current = sections[sections.length-1].getAttribute('id');
+            }
+
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') && link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', setActiveNavLink);
+        window.addEventListener('load', setActiveNavLink);
+
+
+        // Smooth scroll for anchor links & close mobile menu
+        navLinks.forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.hash !== "") {
+                    e.preventDefault();
+                    const hash = this.hash;
+                    const targetElement = document.querySelector(hash);
+                    if (targetElement) {
+                         window.scrollTo({
+                            top: targetElement.offsetTop - (headerHeight -1), // Adjust for fixed header
+                            behavior: 'smooth'
+                        });
+                        // Close mobile menu if open
+                        if (navMenu.classList.contains('active')) {
+                           mobileMenuBtn.click(); // Simulate click to toggle all states correctly
+                        }
+                    }
+                }
+            });
+        });
+        
+        // Back to top button visibility and smooth scroll
+        const backToTopButton = document.querySelector('.back-to-top');
+        if (backToTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Timeline toggle
+        const timelineToggles = document.querySelectorAll('.timeline-toggle');
+        timelineToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const targetId = toggle.dataset.target;
+                const details = document.getElementById(targetId);
+                if (details) {
+                    const isVisible = details.style.display === 'block';
+                    details.style.display = isVisible ? 'none' : 'block';
+                    toggle.textContent = isVisible ? 'Ver mais' : 'Ver menos';
+                    toggle.setAttribute('aria-expanded', !isVisible);
+                }
+            });
+        });
+
+        // BPM Cycle details
+        const cycleItems = document.querySelectorAll('.cycle-item, .cycle-center');
+        const cycleDetailsDivs = document.querySelectorAll('.cycle-details');
+        
+        cycleItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const cycleName = item.dataset.cycle;
+                const detailToShow = document.getElementById(`details-${cycleName}`);
+                
+                cycleDetailsDivs.forEach(div => div.style.display = 'none'); 
+                
+                if (detailToShow) {
+                    detailToShow.style.display = 'flex'; 
+                }
+            });
+        });
+
+        const closeButtons = document.querySelectorAll('.cycle-details .btn-close');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                const detailDiv = button.closest('.cycle-details');
+                if (detailDiv) {
+                    detailDiv.style.display = 'none';
+                }
+            });
+        });
+        
+        // Footer Current Year
+        const currentYearSpan = document.getElementById('currentYear');
+        if (currentYearSpan) {
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+    </script>
+</body>
+</html>
